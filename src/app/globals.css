@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  padding: 0;
+  margin: 0;
+  color: white;
+  background-color: #111;
+  font-family: 'colak';
+
+}
+
+h1 {
+  font-family: 'colak';
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'colak';
+  src: url('/fonts/colak/Colak.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* START: search manufacturer styles */
+.search-manufacturer {
+  @apply max-lg:w-[40rem] max-md:w-[22rem] flex-1 w-full flex justify-center items-center;
+}
+
+.search-manufacturer__input {
+  @apply w-full h-[68px] pl-8 p-4 text-white rounded-md border-2 border-gray-500 bg-transparent outline-none cursor-pointer text-base text-right;
+}
+
+.search-manufacturer__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+
+.search-manufacturer__option {
+  @apply text-white cursor-pointer select-none py-2 pl-10 pr-4 hover:border-b-2 border-orange-400;
+}
+
+/* Card Classes */
+.card-titles__right {
+  @apply min-w-40 flex justify-center;
+}
+
+.card-titles__left {
+  @apply min-w-20 flex justify-center;
+}
+
+.card-titles__star {
+  @apply min-w-16 flex justify-center;
+}
