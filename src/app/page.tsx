@@ -38,6 +38,8 @@ export default function Home() {
     // va ham herfe i tare ke ye component dige bezarim oonja. va baraye search ham mitonam az hamoon component
     // estefade konam intori ke age submit search false bood bia getAll ro seda kon va age true bood bia
     // get Search ro seda kon.
+    // roye ezafe be sabad kharid ke click mishe check mishe bebine login karde ya na, age na fragmant login/signup
+    // baz mishe mesl carddetail ta login/signup kone.
 
     return (
         <main>
@@ -132,7 +134,7 @@ export default function Home() {
                     />
                 </div>
             </div>
-            <div className="max-xl:max-w-4xl max-lg:max-w-2xl max-md:max-w-lg max-sm:max-w-full max-w-6xl mt-36 mx-auto">
+            <div className="w-full mt-36 mx-auto">
                 <div className="w-full flex justify-center items-center relative z-10">
                     <Cards coinForCard={coin} submitForCard={submit} />
                 </div>

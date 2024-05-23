@@ -29,7 +29,7 @@ h1 {
 }
 
 .search-manufacturer__input {
-  @apply w-full h-[68px] pl-8 p-4 text-white rounded-md border-2 border-gray-500 bg-transparent outline-none cursor-pointer text-base text-right;
+  @apply w-full h-[68px] pr-4 p-4 text-white rounded-md border-2 border-gray-500 bg-transparent outline-none cursor-pointer text-base text-right;
 }
 
 .search-manufacturer__options {

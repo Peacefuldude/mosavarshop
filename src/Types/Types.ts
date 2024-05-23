@@ -14,7 +14,7 @@ export interface cardsProps {
     submitForCard: boolean;
 }
 
-export interface cardSearchPhoneProps {
+export interface cardsDetailsProps {
     isOpen: boolean;
     name: string;
     rank: string;
@@ -25,13 +25,7 @@ export interface cardSearchPhoneProps {
     closeModel: () => void;
 }
 
-export interface cardAllProps {
-    isAllOpen: boolean;
-    name: string;
-    rank: string;
-    priceUsd: string;
-    volumeUsd24Hr: string;
-    marketCapUsd: string;
-    changePercent24Hr: string;
-    closeAllModel: () => void;
+export interface formsProps {
+    formsIsOpen: boolean;
+    formsCloseModel: () => void;
 }

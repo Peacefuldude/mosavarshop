@@ -4,10 +4,9 @@ import axios from "axios";
 import { sliceFunc } from "@/Utils/slice-utils";
 import { sliceAll } from "@/Utils/slice-utils";
 import Image from "next/image";
-import CardsSearchPhone from "./CardsSearchPhone";
-
+import CardsDetails from "./CardsDetails";
 import React, { useEffect } from "react";
-import CardsAllPhone from "./CardsAllPhone";
+import Forms from "./forms";
 
 const Cards = ({ coinForCard, submitForCard }: cardsProps) => {
     const BASE_URL = "https://api.coincap.io/v2/assets";
@@ -40,128 +39,70 @@ const Cards = ({ coinForCard, submitForCard }: cardsProps) => {
             });
     }, []);
 
-    useEffect(() => {
-        axios
-            .get(`${BASE_URL}/${coinForCard}`, axiosConfig)
-            .then((response) => {
-                setName(response.data.data.name);
-                setRank(response.data.data.rank);
-                setPriceUsd(sliceFunc(response.data.data.priceUsd));
-                setVolumeUsd24Hr(sliceFunc(response.data.data.volumeUsd24Hr));
-                setMarketCapUsd(sliceFunc(response.data.data.marketCapUsd));
-                setChangePercent24Hr(
-                    sliceFunc(response.data.data.changePercent24Hr)
-                );
-                // console.log(response.data.data);
-            })
-            .catch((errors) => {
-                console.log(errors);
-            });
-    }, [submitForCard]);
+    const [formsIsOpen, setFormsIsOpen] = useState(false);
+    const loginHandler = () => {
+        if (!localStorage.getItem("mosavarshopuser")) {
+            setFormsIsOpen(!formsIsOpen);
+        }
+    };
 
     return (
         <div className="w-full">
-            <div className="w-full flex flex-row justify-between items-start border-b-[1px] pb-4 border-orange-400">
-                <div className="flex flex-row justify-start items-start text-gray-200">
-                    <p className="card-titles__left">#</p>
-                    <p className="card-titles__left">Name</p>
-                </div>
-                <div className="flex flex-row justify-end items-start flex-1 text-gray-200">
-                    <p className="card-titles__right">Price</p>
-                    <p className="card-titles__right max-lg:hidden">
-                        24H Volume
-                    </p>
-                    <p className="card-titles__right max-lg:hidden">
-                        Market Cap
-                    </p>
-                    <p className="card-titles__right max-sm:hidden">
-                        24H Change
-                    </p>
-                    <p className="card-titles__star max-md:hidden">Star</p>
-                </div>
-            </div>
             {Loading ? (
                 <div className="w-full flex justify-center items-center mt-6">
-                    <h4>gathering latest data...</h4>
+                    <h4>چند ثانیه منتظر بمانید</h4>
                 </div>
             ) : undefined}
-            {coinForCard ? (
-                <div
-                    onClick={() => setIsOpen(true)}
-                    className="cursor-pointer w-full flex flex-row justify-between items-start border-b-[1px] pb-4 mt-6 border-orange-400"
-                >
-                    <div className="flex flex-row justify-start items-start text-gray-200">
-                        <p className="card-titles__left">{rank}</p>
-                        <p className="card-titles__left">{name}</p>
-                    </div>
-                    <div className="flex flex-row justify-end items-start flex-1 text-gray-200">
-                        <p className="card-titles__right">{priceUsd}</p>
-                        <p className="card-titles__right max-lg:hidden">
-                            {volumeUsd24Hr}
-                        </p>
-                        <p className="card-titles__right max-lg:hidden">
-                            {marketCapUsd}
-                        </p>
-                        <p className="card-titles__right max-sm:hidden">
-                            {changePercent24Hr}
-                        </p>
-                        <p className="card-titles__star max-md:hidden">Star</p>
-                    </div>
-                </div>
-            ) : (
-                <div>
-                    {allData?.map((item, index) => (
-                        <div
-                            onClick={() => setIsAllOpen(true)}
-                            key={index}
-                            className="cursor-pointer w-full flex flex-row justify-between items-start border-b-[1px] pb-4 mt-6 border-orange-400"
-                        >
-                            <div className="flex flex-row justify-start items-start text-gray-200">
-                                <p className="card-titles__left">{item.rank}</p>
-                                <p className="card-titles__left">{item.name}</p>
-                            </div>
-                            <div className="flex flex-row justify-end items-start flex-1 text-gray-200">
-                                <p className="card-titles__right">
-                                    {sliceFunc(item.priceUsd)}
-                                </p>
-                                <p className="card-titles__right max-lg:hidden">
-                                    {sliceFunc(item.volumeUsd24Hr)}
-                                </p>
-                                <p className="card-titles__right max-lg:hidden">
-                                    {sliceFunc(item.marketCapUsd)}
-                                </p>
-                                <p className="card-titles__right max-sm:hidden">
-                                    {sliceFunc(item.changePercent24Hr)}
-                                </p>
-                                <p className="card-titles__star max-md:hidden">
-                                    Star
-                                </p>
-                            </div>
-                            {/* <CardsAllPhone
-                                isAllOpen={isAllOpen}
-                                name={allData[index].name}
-                                rank={allData[index].rank}
-                                priceUsd={allData[index].priceUsd}
-                                volumeUsd24Hr={allData[index].volumeUsd24Hr}
-                                marketCapUsd={allData[index].marketCapUsd}
-                                changePercent24Hr={
-                                    allData[index].changePercent24Hr
-                                }
-                                closeAllModel={() => setIsAllOpen(false)}
-                            /> */}
+            <div className="max-xl:px-16 max-lg:grid-cols-2 max-md:px-8 max-sm:grid-cols-1 max-sm:px-2 px-36 grid grid-cols-3">
+                {allData?.map((item, index) => (
+                    <div
+                        onClick={() => setIsOpen(true)}
+                        key={index}
+                        className="hover:bg-opacity-20 transition-all ease-in-out transition-color delay-150 cursor-pointer rounded-xl bg-opacity-10 mt-6 mx-6 py-4 px-6 bg-white flex flex-col justify-center items-center"
+                    >
+                        <Image
+                            src="/mock2.png"
+                            alt="product"
+                            width={512}
+                            height={512}
+                            className="mb-4"
+                        />
+                        <div className="w-full flex flex-col justify-start items-start">
+                            <h3 className="white font-bold text-xl mb-4">
+                                Batman v. Joker
+                            </h3>
+                            <p className="text-gray-300 mb-2">
+                                The battle has just begun!
+                            </p>
+                            <p className="text-gray-100 mb-2">
+                                120.000
+                                <span className="text-orange-400">T</span>
+                            </p>
                         </div>
-                    ))}
-                </div>
-            )}
-            <CardsSearchPhone
+                        <button
+                            onClick={loginHandler}
+                            className="w-full font-bold rounded-md py-2 transition-all ease-in-out transition-color delay-150 bg-orange-600 hover:bg-orange-700"
+                        >
+                            اضافه به سبد خرید
+                        </button>
+                    </div>
+                ))}
+            </div>
+            {/* Cards Detail fragment will be opened upon click on cards */}
+            <CardsDetails
                 isOpen={isOpen}
-                name={name}
-                rank={rank}
-                priceUsd={priceUsd}
-                volumeUsd24Hr={volumeUsd24Hr}
-                marketCapUsd={marketCapUsd}
-                changePercent24Hr={changePercent24Hr}
+                name={"name"}
+                rank={"rank"}
+                priceUsd={"priceUsd"}
+                volumeUsd24Hr={"volumeUsd24Hr"}
+                marketCapUsd={"marketCapUsd"}
+                changePercent24Hr={"changePercent24Hr"}
                 closeModel={() => setIsOpen(false)}
+            />
+            {/* Login/signup fragment will be be open upon click on add to cart if the user is not logged in already. */}
+            <Forms
+                formsIsOpen={formsIsOpen}
+                formsCloseModel={() => setFormsIsOpen(false)}
             />
         </div>
     );

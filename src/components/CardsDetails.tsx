@@ -1,10 +1,10 @@
-import { cardSearchPhoneProps } from "@/Types/Types";
+import { cardsDetailsProps } from "@/Types/Types";
 import React from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 
-const CardsSearchPhone = ({
+const CardsDetails = ({
     isOpen,
     name,
     rank,
@@ -13,7 +13,7 @@ const CardsSearchPhone = ({
     marketCapUsd,
     changePercent24Hr,
     closeModel,
-}: cardSearchPhoneProps) => {
+}: cardsDetailsProps) => {
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -40,7 +40,7 @@ const CardsSearchPhone = ({
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded bg-black py-20 bg-opacity-70 text-left shadow-xl transition-all flex flex-col gap-5">
+                                <Dialog.Panel className="relative w-full max-w-lg max-h-[90vh] overflow-y-hidden transform rounded bg-black py-20 bg-opacity-80 text-left shadow-xl transition-all flex flex-col gap-5">
                                     <button
                                         type="button"
                                         onClick={closeModel}
@@ -55,14 +55,13 @@ const CardsSearchPhone = ({
                                         />
                                     </button>
                                     <div className="flex-1 flex flex-col justify-center items-center gap-2 px-10">
-                                        <h2 className="font-bold text-6xl capitalized">
-                                            {name}
-                                        </h2>
-                                        <div className="w-full flex flex-row justify-end items-center flex-wrap gap-4">
-                                            <span className="text-2xl mr-20">
-                                                #{rank}
-                                            </span>
-                                        </div>
+                                        <Image
+                                            src="/mock2.png"
+                                            alt="product"
+                                            width={280}
+                                            height={280}
+                                            className="mb-4"
+                                        />
                                         <div className="w-full mt-8 flex flex-row justify-between items-center flex-wrap gap-4">
                                             <span>Price(USD):</span>
                                             <span>{priceUsd}</span>
@@ -79,6 +78,9 @@ const CardsSearchPhone = ({
                                             <span>Change(24Hr):</span>
                                             <span>{changePercent24Hr}</span>
                                         </div>
+                                        <button className="w-full font-bold rounded-md mt-2 py-4 transition-all ease-in-out transition-color delay-150 bg-orange-600 hover:bg-orange-700">
+                                            اضافه به سبد خرید
+                                        </button>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
@@ -90,4 +92,4 @@ const CardsSearchPhone = ({
     );
 };
 
-export default CardsSearchPhone;
+export default CardsDetails;

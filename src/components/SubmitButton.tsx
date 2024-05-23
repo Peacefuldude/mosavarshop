@@ -10,17 +10,13 @@ const SubmitButton = ({
 }: submitSearchProps) => {
     return (
         <div className="max-lg:w-[40rem] max-md:w-[22rem] max-lg:mt-3">
-            {/* Simple button bellow */}
-            {/* <button className="cursor-pointer group relative flex gap-1.5 px-8 py-5 ml-3 bg-orange-500 text-[#f1f1f1] rounded-md hover:bg-opacity-70 transition font-semibold shadow-md">
-                Search Now
-            </button> */}
             <div
                 className="w-full flex items-center justify-center cursor-pointer"
                 onClick={() => setSubmit(!submit)}
             >
                 <div
                     className={cn(
-                        "max-lg:ml-0 w-full relative inline-flex items-center justify-start py-5 pb-6 pl-4 pr-12 mr-3 overflow-hidden font-semibold shadow transition-color delay-100 duration-700 text-orange-500 transition-all ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 dark:bg-gray-700 dark:text-white dark:hover:text-gray-200 dark:shadow-none group",
+                        "max-lg:ml-0 max-lg:mr-0 w-full relative inline-flex items-center justify-start py-5 pb-6 pl-4 pr-12 mr-3 overflow-hidden font-semibold shadow transition-color delay-100 duration-700 text-orange-500 transition-all ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 dark:bg-gray-700 dark:text-white dark:hover:text-gray-200 dark:shadow-none group",
                         {
                             "bg-red-500": currentFramework === "monero",
                             "bg-blue-600": currentFramework === "ripple",
